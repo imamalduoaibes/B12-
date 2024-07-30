@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate x from Y</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Calculate x from Y</h2>
+    <div class="form-group">
+        <label for="inputY">Enter the value of Y:</label>
+        <input type="number" id="inputY" step="any">
+    </div>
+    <button onclick="calculateX()">Calculate x</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateX() {
+        const Y = parseFloat(document.getElementById('inputY').value);
+        if (isNaN(Y)) {
+            document.getElementById('result').textContent = "Please enter a valid number for Y.";
+            return;
+        }
+        const numerator = 673.287591;
+        const denominatorConstant = 537.7605519;
+
+        // Rearrange the equation to solve for x:
+        // Y = numerator / (1 + x / denominatorConstant)
+        // Y * (1 + x / denominatorConstant) = numerator
+        // Y + Y * (x / denominatorConstant) = numerator
+        // Y * (x / denominatorConstant) = numerator - Y
+        // x / denominatorConstant = (numerator - Y) / Y
+        // x = (numerator - Y) / Y * denominatorConstant
+
+        const x = ((numerator - Y) / Y) * denominatorConstant;
+        document.getElementById('result').textContent = "Calculated value of x: " + x.toFixed(6);
+    }
+</script>
+
+</body>
+</html>
